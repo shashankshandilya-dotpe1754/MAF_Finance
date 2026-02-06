@@ -24,9 +24,11 @@ scope = [
     "https://www.googleapis.com/auth/drive"
 ]
 
-json_key_path = r"C:\Users\shashank.shandilya_d\Desktop\Vs Code\boxwood-mantra-456206-s3-bc70dce6a998.json"
+creds = ServiceAccountCredentials.from_json_keyfile_dict(
+    st.secrets["gcp_service_account"],
+    scope
+)
 
-creds = ServiceAccountCredentials.from_json_keyfile_name(json_key_path, scope)
 client = gspread.authorize(creds)
 
 SHEET_URL = "https://docs.google.com/spreadsheets/d/18Yp4-QNYMP3tPCT5oNw6QnVNu4PraTZuZM3CV1_aLrU/edit"
@@ -225,3 +227,4 @@ if page == "Cases":
 
 
 st.caption("Auto refreshed from Google Sheet")
+
